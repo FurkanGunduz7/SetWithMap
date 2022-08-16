@@ -6,25 +6,25 @@ import (
 
 // Set - our representation of a set data structure
 type Set struct {
-	Elements map[string]bool
+	Elements map[interface{}]bool
 }
 
 func NewSet() *Set {
-	return &Set{Elements: make(map[string]bool)}
+	return &Set{Elements: make(map[interface{}]bool)}
 }
 
 // Add - adds an element to our Set
-func (s *Set) Add(elem string) {
+func (s *Set) Add(elem interface{}) {
 	s.Elements[elem] = true
 }
 
 // Delete - removes an element from our set if it exists
-func (s *Set) Delete(elem string) {
+func (s *Set) Delete(elem interface{}) {
 	delete(s.Elements, elem)
 }
 
 // Contains - checks to see if an element exists within the set
-func (s *Set) Contains(elem string) bool {
+func (s *Set) Contains(elem interface{}) bool {
 	_, exists := s.Elements[elem]
 	return exists
 }
@@ -43,7 +43,7 @@ func (s *Set) Count() {
 
 // Clear - clears our set
 func (s *Set) Clear() {
-	s.Elements = make(map[string]bool)
+	s.Elements = make(map[interface{}]bool)
 	fmt.Println("Cleared")
 }
 
@@ -54,9 +54,9 @@ func main() {
 	fmt.Println("Sets Elements:")
 	mySet.Add("Earth")
 	mySet.Add("Venus")
-	mySet.Add("Mars")
+	mySet.Add(3)
 	mySet.Add("Earth")
-	mySet.Add("Moon")
+	mySet.Add(7.77)
 	mySet.Add("Jupiter")
 	mySet.Delete("Venus")
 	mySet.List()
