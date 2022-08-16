@@ -10,9 +10,7 @@ type Set struct {
 }
 
 func NewSet() *Set {
-	var set Set
-	set.Elements = make(map[string]bool)
-	return &set
+	return &Set{Elements: make(map[string]bool)}
 }
 
 // Add - adds an element to our Set
