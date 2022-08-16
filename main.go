@@ -1,33 +1,28 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
 
 // Set - our representation of a set data structure
 type Set struct {
-	Elements map[string]struct{}
+	Elements map[string]bool
 }
 
 func NewSet() *Set {
 	var set Set
-	set.Elements = make(map[string]struct{})
+	set.Elements = make(map[string]bool)
 	return &set
 }
 
 // Add - adds an element to our Set
 func (s *Set) Add(elem string) {
-	s.Elements[elem] = struct{}{}
+	s.Elements[elem] = true
 }
 
 // Delete - removes an element from our set if it exists
-func (s *Set) Delete(elem string) error {
-	if _, exists := s.Elements[elem]; !exists {
-		return errors.New("element not present in set")
-	}
+func (s *Set) Delete(elem string) {
 	delete(s.Elements, elem)
-	return nil
 }
 
 // Contains - checks to see if an element exists within the set
@@ -45,23 +40,13 @@ func (s *Set) List() {
 
 // Count - counts how many elements are in our set
 func (s *Set) Count() {
-	var count int
-	for i := 0; i < len(s.Elements); i++ {
-		count++
-	}
-	fmt.Println(count)
+	fmt.Println(len(s.Elements))
 }
 
 // Clear - clears our set
 func (s *Set) Clear() {
-	newSet := NewSet()
-	s = newSet
-
-	fmt.Println("Temizleniyor")
-	for k, _ := range s.Elements {
-		fmt.Println(k)
-	}
-	fmt.Println("Temizlendi")
+	s.Elements = make(map[string]bool)
+	fmt.Println("Cleared")
 }
 
 func main() {
@@ -73,6 +58,8 @@ func main() {
 	mySet.Add("Venus")
 	mySet.Add("Mars")
 	mySet.Add("Earth")
+	mySet.Add("Moon")
+	mySet.Add("Jupiter")
 	mySet.Delete("Venus")
 	mySet.List()
 	mySet.Count()

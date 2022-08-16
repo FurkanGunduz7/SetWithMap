@@ -11,7 +11,7 @@ func main() {
 	fmt.Println(s)
 	delete(s, 2) // remove element
 	fmt.Println(s)
-	for k, _ := range s {
+	for k := range s {
 		fmt.Println(k)
 	}
 }
